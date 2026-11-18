@@ -114,7 +114,7 @@ export function createStage(scene, parts, lights) {
     });
     // ---- the sky: discs, orbs, beams and spheres of water
     const sky = sm(t, T.sky0, 8) * (1 - sm(t, T.rise1, 6)), land = sm(t, T.land - 4, 8) * (1 - sm(t, T.rise0 + 1, 8));
-    discs.forEach((d, k) => { const hy = DP[k].y + (1 - sky) * 9; d.root.position.set(DP[k].x + Math.sin(t * W(0.1) + k) * 0.4, hy + 0.15 * Math.sin(t * W(0.25) + k), DP[k].z); d.root.visible = sky > 0.01;
+    discs.forEach((d, k) => { const hy = DP[k].y + (1 - sky) * 9; d.root.position.set(DP[k].x + Math.sin(t * W(0.1) + k) * 0.4, hy - 0.5 + 1.25 * Math.sin(t * W(0.07) + k * 2.1) + 0.35 * Math.sin(t * W(0.22) + k), DP[k].z); d.root.visible = sky > 0.01;
       if (d.kind === 'L6') { d.root.rotation.set(0, t * W(0.4), 0.1 * Math.sin(t * W(0.2))); } else d.root.rotation.set(0.08 * Math.sin(t * W(0.15) + k), t * W(0.5) * (k ? -1 : 1), 0.08 * Math.cos(t * W(0.2)));
       d.lights.forEach((l, j) => { l.material.color.copy(rainbow(j / 12 + t * 6 / 90, 0.9, 0.6 + 0.2 * Math.sin(t * W(3) + j))); }); });
     orbs.forEach((o) => { const q = orbAt(o.i, t); o.m.position.copy(q.p); o.m.visible = sky > 0.01; const c = rainbow(o.i * 0.12 + t * 6 / 90, 0.5, 0.85); o.m.material.color.copy(c); o.h.material.color.copy(c); o.m.scale.setScalar(0.9 + 0.2 * Math.sin(t * W(1.3) + o.i));
