@@ -94,8 +94,6 @@ vec3 skyAt(vec2 uv) {
   vec3 c = mix(low, top, smoothstep(0.35, 0.65, g0));
   float h = h21(cell + 7.0);
   float tw = 0.5 + 0.5 * sin(uTime / uLoop * 6.2831853 * 43.0 + h * 40.0);
-  if (h > 0.9965) c = mix(c, vec3(0.85, 0.9, 1.0), 0.5 + 0.5 * tw);
-  else if (h > 0.992) c = mix(c, vec3(0.6, 0.7, 0.95), 0.4);
   float md = length((uv - vec2(0.86, 0.83)) * vec2(uResolution.x / uResolution.y, 1.0));
   if (md < 0.045) c = vec3(0.93, 0.94, 0.84); else if (md < 0.06) c = mix(c, vec3(0.5, 0.55, 0.75), 0.35);
   return c;
